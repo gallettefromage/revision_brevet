@@ -17,7 +17,7 @@ class Code:
         self.parti_qts.destroy()
         self.parti_qts = Frame(self.fenetre, height= 720, width= 1080)
         self.parti_qts.place(x=0,y=100)
-        qts = random.randint(0,9)
+        qts = random.randint(0,10)
         match qts:
             case 0:
                 self.question.gémoétrie.triangle.rectangle(self)
@@ -406,6 +406,9 @@ class Code:
                     cadre = Frame(self.parti_qts, background='black')
                     cadre.place(x=60, y=490, width=200, height=60)
 
+                    réponse_a = (bf1-bf2)/(af1-af2)
+                    réponse_b = bf1-(af1*réponse_a)
+                    réponse = [[réponse_a, réponse_b]]
 
                     self.interface = Entry(cadre, width=20, font=("Elephant", 30), bg='white')
                     self.interface.place(x=5, y=5, width=190, height=50)
@@ -420,5 +423,5 @@ class Code:
                     self.interface2.place(x=5, y=5, width=190, height=50)
 
 
-                    self.Valider = Button(self.parti_qts, text = "Valider", font = ("", 20))
+                    self.Valider = Button(self.parti_qts, text = "Valider", font = ("", 20),command = lambda : self.question.valider(self, réponse =réponse, réponse_donner=[eval(self.interface.get()),eval(self.interface2.get()) ] , taille = 80))
                     self.Valider.place(x=805, y=490)
